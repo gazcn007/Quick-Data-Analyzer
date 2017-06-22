@@ -19,7 +19,12 @@ for idx in df['dealerId'].index:
 	gender = df.get_value(idx,'gender')
 	if gender == 'male':
 		bayesNetwork[1][counter]+=1
-		bayesNetwork[2][counter]+=1
 	elif gender == 'female':
-		bayesNetwork[1][counter]+=1
+		bayesNetwork[2][counter]+=1
 
+raw_data = {'Feature':bayesNetwork[0],
+	'Male Count':bayesNetwork[1],
+	'Female_Count':bayesNetwork[2]
+}
+df2 = DataFrame(raw_data,columns=['Feature','Male_Count','Female_Count'])
+df2.plot(kind='bar',stacked=True).get_figure().savefig('./Visualizer.png')
